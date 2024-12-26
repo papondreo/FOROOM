@@ -1,0 +1,58 @@
+{
+  "name": "foroom",
+  "private": true,
+  "version": "1.0.0",
+  "description": "FOROOM",
+  "repository": "",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "webpack serve --open",
+    "build": "webpack --mode production",
+    "build-cordova": "cross-env TARGET=cordova cross-env NODE_ENV=production vite build && node ./build/build-cordova.js && cd cordova && cordova build",
+    "build-cordova-ios": "cross-env TARGET=cordova cross-env NODE_ENV=production vite build && node ./build/build-cordova.js && cd cordova && cordova build ios",
+    "cordova-ios": "cross-env TARGET=cordova cross-env NODE_ENV=production vite build && node ./build/build-cordova.js && cd cordova && cordova run ios",
+    "build-cordova-android": "cross-env TARGET=cordova cross-env NODE_ENV=production vite build && node ./build/build-cordova.js && cd cordova && cordova build android",
+    "cordova-android": "cross-env TARGET=cordova cross-env NODE_ENV=production vite build && node ./build/build-cordova.js && cd cordova && cordova run android",
+    "postinstall": "cpy --flat ./node_modules/framework7-icons/fonts/*.* ./src/fonts/ && cpy --flat ./node_modules/material-icons/iconfont/*.* ./src/fonts/"
+  },
+  "browserslist": [
+    "IOS >= 15",
+    "Safari >= 15",
+    "last 5 Chrome versions",
+    "last 5 Firefox versions"
+  ],
+  "dependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "babel-loader": "^9.2.1",
+    "css-loader": "^7.1.2",
+    "dom7": "^4.0.6",
+    "file-loader": "^6.2.0",
+    "framework7": "^8.3.4",
+    "framework7-icons": "^5.0.5",
+    "framework7-react": "^8.3.4",
+    "html-webpack-plugin": "^5.6.3",
+    "material-icons": "^1.13.12",
+    "node-sass": "^9.0.0",
+    "prop-types": "^15.8.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sass-loader": "^16.0.4",
+    "skeleton-elements": "^4.0.1",
+    "style-loader": "^4.0.0",
+    "swiper": "^11.1.15",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "devDependencies": {
+    "cpy-cli": "^5.0.0",
+    "cross-env": "^7.0.3",
+    "less": "^4.2.1",
+    "postcss-preset-env": "^10.1.2",
+    "rollup": "^4.29.1",
+    "vite-plugin-html": "^3.2.2"
+  }
+}
