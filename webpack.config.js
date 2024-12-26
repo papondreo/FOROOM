@@ -1,20 +1,25 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  mode: 'development', // Используем режим разработки
-  entry: './src/index.jsx', // Основной файл приложения
+  mode: 'development',
+  entry: './src/index.jsx',
   output: {
-    path: path.resolve(__dirname, 'www'), // Папка для Cordova
+    path: path.resolve(__dirname, 'www'),
     filename: 'bundle.js',
   },
-  resolve: {
+  resolve:{
     extensions: ['.js', '.jsx'],
+    alias: {
+      'framework7': 'framework7',
+      'framework7-react': 'framework7-react',
+    },
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -39,12 +44,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html', // Путь к шаблону HTML
+      template: './src/index.html',
+    }),
+    new webpack.DefinePlugin({
+      TARGET: JSON.stringify('cordova'),
     }),
   ],
   devServer: {
     static: path.join(__dirname, 'www'),
     compress: true,
-    port: 8080,
+    port: 8081,
   },
 };
